@@ -11,4 +11,11 @@
  * temp: magnitude of the temperature
  */
 EnvironmentData CreateEnvironmentData(float acc_x, float acc_y, float acc_z, signed int temp) {
+    struct EnvironmentData environmentData;
+    environmentData.acc_x = acc_x;
+    environmentData.acc_y = acc_y;
+    environmentData.acc_z = acc_z;
+    environmentData.temp = temp;
+
+    return environmentData;
 }
