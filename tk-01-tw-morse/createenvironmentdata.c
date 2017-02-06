@@ -12,9 +12,9 @@
  */
 EnvironmentData CreateEnvironmentData(float acc_x, float acc_y, float acc_z, signed int temp) {
     struct EnvironmentData environmentData;
-    environmentData.acc_x = acc_x*10;
-    environmentData.acc_y = acc_y*10;
-    environmentData.acc_z = acc_z*10;
+    environmentData.acc_x = ((int)(acc_x * 100 + 5) / 10.0);
+    environmentData.acc_y = ((int)(acc_y * 100 + 5) / 10.0);
+    environmentData.acc_z = ((int)(acc_z * 100 + 5) / 10.0);
     environmentData.temp = temp;
 
     // printf("\n");
