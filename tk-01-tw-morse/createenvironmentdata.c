@@ -17,9 +17,5 @@ EnvironmentData CreateEnvironmentData(float acc_x, float acc_y, float acc_z, sig
     environmentData.acc_z = ((int)(acc_z * 100 + 5) / 10.0);
     environmentData.temp = temp;
 
-    // printf("\n");
-    // printf("%d\n", acc_x);
-    // printf("%d\n", environmentData.acc_x);
-
     return environmentData;
 }
