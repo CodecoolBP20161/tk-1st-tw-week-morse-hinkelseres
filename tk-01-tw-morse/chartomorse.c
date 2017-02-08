@@ -22,17 +22,18 @@ int CharToMorse(char input[], char *output) {
         if(65 <= x && x <= 90){
             strcat(output, CHAR_TO_MORSE_ALPHA[x-65]);
             if(input[i+1]!= '_'){
-            	strcat(output, "/");
+            	strcat(output, '/');
+            }
         // Between 48 and 57 digits between 0 and 9 in the ASCII table
         }else if(48 <= x && x<=57){
             strcat(output, CHAR_TO_MORSE_NUMBER[x-48]);
             if(input[i+1]!= '_'){
-            	strcat(output, "/");
+            	strcat(output, '/');
             }
         // If character is space, append with tab
         }else if(x == 32){
             strcat(output, "\t");
         }
     }
-    return 1;
+    return i;
 }
