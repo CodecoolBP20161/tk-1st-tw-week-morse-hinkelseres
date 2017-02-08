@@ -36,7 +36,7 @@ typedef struct EnvironmentData {
 EnvironmentData CreateEnvironmentData(float acc_x, float acc_y, float acc_z, int temp);
 void CalculateSystemState(EnvironmentData *env);
 int CharToMorse(char input[], char *output);
-int MorseToBinary(char input[], char output[]);
+int MorseToBinary(char input[], char *output[]);
 
 
 
