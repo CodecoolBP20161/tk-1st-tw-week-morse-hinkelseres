@@ -22,28 +22,22 @@ char GENERATED_OUTPUT[846] =	{""};
 
 void test(float acc_x, float acc_y, float acc_z, unsigned int light);
 
+
 int main() {
-
-
-//	EnvironmentData ed;
-//	ed = CreateEnvironmentData(-5.9, 6.0, 0, -15);
-//	printf("%d\n", sizeof(ed));
-//	printf("%d, %d, %d, %d", ed.acc_x, ed.acc_y, ed.acc_z, ed.temp);
-
-//	int testOk = 0;
-//    test(0,0,0,0);      /* OK */
-//    strcat(GENERATED_OUTPUT, "\n\n");
-//    test(0,0,1,35);    /* HIGH TEMP */
-//    strcat(GENERATED_OUTPUT, "\n\n");
-//    test(5,0,0,0);      /* HIGH ACCELERATION */
-//    strcat(GENERATED_OUTPUT, "\n\n");
-//    test(2,2,2,40);    /* HIGH ACCELERATION AND TEMP */
-//    testOk = (strcmp(EXPECTED_OUTPUT, GENERATED_OUTPUT)==0);
-//    printf("TEST: %s\n", (testOk?"OK":"FAILED"));
-//    if(!testOk) {
-//    	printf("Expected:\n%s\n", EXPECTED_OUTPUT);
-//    	printf("Generated:\n%s\n", GENERATED_OUTPUT);
-//    }
+	int testOk = 0;
+    test(0,0,0,0);      /* OK */
+    strcat(GENERATED_OUTPUT, "\n\n");
+    test(0,0,1,35);    /* HIGH TEMP */
+    strcat(GENERATED_OUTPUT, "\n\n");
+    test(5,0,0,0);      /* HIGH ACCELERATION */
+    strcat(GENERATED_OUTPUT, "\n\n");
+    test(2,2,2,40);    /* HIGH ACCELERATION AND TEMP */
+    testOk = (strcmp(EXPECTED_OUTPUT, GENERATED_OUTPUT)==0);
+    printf("TEST: %s\n", (testOk?"OK":"FAILED"));
+    if(!testOk) {
+    	printf("Expected:\n%s\n", EXPECTED_OUTPUT);
+    	printf("Generated:\n%s\n", GENERATED_OUTPUT);
+    }
 }
 
 void test(float acc_x, float acc_y, float acc_z, unsigned int light) {
