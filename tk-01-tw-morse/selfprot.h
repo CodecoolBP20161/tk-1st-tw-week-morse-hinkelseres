@@ -36,7 +36,7 @@ typedef struct EnvironmentData {
 EnvironmentData CreateEnvironmentData(float acc_x, float acc_y, float acc_z, int temp);
 void CalculateSystemState(EnvironmentData *env);
 int CharToMorse(char input[], char *output);
-int MorseToBinary(char input[], char *output[]);
+int MorseToBinary(char input[], char output[]);
 
 
 
@@ -87,5 +87,11 @@ static const char CHAR_TO_MORSE_NUMBER[10][10] = {
     "- - - . .",	//8
     "- - - - .",	//9
 };
+
+/* Declarations of built-in functions to avoid implicit declaration warning. */
+int printf( const char *restrict format, ... );
+// int ervgnjhnstrlen(char s[]);
+
+
 
 #endif /* SELFPROT_H */
