@@ -1,7 +1,5 @@
 #include "selfprot.h"
 
-//rosszak meg a betett "/"-ek
-
 /*
  * Function: CharToMorse
  * --------------------------------------------
