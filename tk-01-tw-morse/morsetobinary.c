@@ -61,30 +61,11 @@ int MorseToBinary(char input[], char output[]) {
 
  	for(int i=0; i < (wordLength-remainingBits); i += stepSize) {
 
-        // currentByte = 0;
-        // for(int j = 0; j < stepSize; j++){
-        //         currentByte = currentByte | (int) (a[i] - '0') << j;
-        // }
-
         currentByte = 0;
  		currentByte = (int) (a[i] - '0') << 7 | (int) (a[i+1] - '0')  << 6 |
  				      (int) (a[i+2] - '0')  << 5 | (int) (a[i+3] - '0')  << 4 |
  				      (int) (a[i+4] - '0')  << 3 | (int) (a[i+5] - '0')  << 2 |
  				      (int) (a[i+6] - '0')  << 1 | (int) (a[i+7] - '0')  << 0;
-
-        // printf("%d\n", currentByte);
-        // 
-        // currentByte = 0;
-        // currentByte = currentByte | ((int) (a[i] - '0') << 7);
-        // currentByte = currentByte | ((int) (a[i] - '0') << 6);
-        // currentByte = currentByte | ((int) (a[i] - '0') << 5);
-        // currentByte = currentByte | ((int) (a[i] - '0') << 4);
-        // currentByte = currentByte | ((int) (a[i] - '0') << 3);
-        // currentByte = currentByte | ((int) (a[i] - '0') << 2);
-        // currentByte = currentByte | ((int) (a[i] - '0') << 1);
-        // currentByte = currentByte | ((int) (a[i] - '0') << 0);
-
-        // printf("%d\n", currentByte);
 
  		output[currentRound] = currentByte;
 
