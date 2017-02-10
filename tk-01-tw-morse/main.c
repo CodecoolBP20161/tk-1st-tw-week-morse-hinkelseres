@@ -1,5 +1,6 @@
 #include "selfprot.h"
-#include "stdio.h"
+#include <stdio.h>
+#include <string.h>
 
 #define toString(s) (s==OK?"OK":(s==HIGH_ACCELERATION?"HIGH ACCELERATION":(s==HIGH_TEMP?"HIGH TEMP":"HIGH ACCELERATION AND TEMP")))
 
@@ -24,6 +25,7 @@ void test(float acc_x, float acc_y, float acc_z, unsigned int light);
 
 
 int main() {
+
 	int testOk = 0;
     test(0,0,0,0);      /* OK */
     strcat(GENERATED_OUTPUT, "\n\n");
@@ -35,6 +37,7 @@ int main() {
     testOk = (strcmp(EXPECTED_OUTPUT, GENERATED_OUTPUT)==0);
     printf("TEST: %s\n", (testOk?"OK":"FAILED"));
     if(!testOk) {
+	// if(1) {
     	printf("Expected:\n%s\n", EXPECTED_OUTPUT);
     	printf("Generated:\n%s\n", GENERATED_OUTPUT);
     }
@@ -56,11 +59,13 @@ void test(float acc_x, float acc_y, float acc_z, unsigned int light) {
     CharToMorse(word, morseWord);
     strcat(GENERATED_OUTPUT, morseWord);
     strcat(GENERATED_OUTPUT, "\n");
+
     numOfUsedBits = MorseToBinary(morseWord, morseBin);
+
     for(i=0;i<32 && i<numOfUsedBits;i++) {
     	int j;
-    	for(j=0;j<sizeof(char)*8 && (i*((sizeof(char)*8))+j)<numOfUsedBits;j++) {
-    		strcat(GENERATED_OUTPUT, ((morseBin[i]>>(sizeof(char)*8-j-1)&1)?".":" "));
-    	}
+		for(j=0;j<sizeof(char)*8 && (i*((sizeof(char)*8))+j)<numOfUsedBits;j++) {
+		    		strcat(GENERATED_OUTPUT, ((morseBin[i]>>(sizeof(char)*8-j-1)&1)?".":" "));
+		    	}
     }
 }

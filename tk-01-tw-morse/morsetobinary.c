@@ -12,39 +12,95 @@
  * returns: the number of used bits for morse
  */
 
+int MorseToBinary(char input[], char output[]) {
 
-int MorseToBinary(char input[], char *output[]) {
-    int i;
-    for (i = 0; input[i] != '\0'; i++){
-    	int x = (int) input[i];
-    	if (x == 46) {
-    		strcat(output, "1");
-    	}else if (x == 45) {
-    		strcat(output, "111");
-    	}else if (x == 32) {
-    		strcat(output, "0");
-    	}else if (x == 47) {
-    		strcat(output, "000");
-    	}else if (x == 9) {
-    		strcat(output, "0000000");
-    	}
-    }
-    int size = strlen(output) + 8 - strlen(output)%8;
-    char *nums = output;
+    char a[255] = "";
+
+    // Converting input into raw string format
+ 	for(int i=0; i <strlen(input); i++) {
+
+ 		int currentChar = (int) input[i];
+
+        // If current character is space
+ 		if(currentChar == 32) {
+ 			strcat(a, "0");
+ 		}
+
+        // If current character is a dash
+ 		else if (currentChar == 45){
+ 			strcat(a, "111");
+ 		}
+
+        // If current character is a point
+ 		else if (currentChar == 46) {
+ 			strcat(a, "1");
+ 		}
+
+        // If current character is a per sign
+ 		else if (currentChar == 47) {
+ 			strcat(a, "000");
+
+ 		}
+
+        // If current character is a horizontal tab
+ 		else if (currentChar == 9) {
+ 			strcat(a, "0000000");
+ 		}
+ 	}
+
+    // Initial variables before conversion from raw string to binary
+    int stepSize = sizeof(char)*8;
+ 	int wordLength = strlen(a);
+ 	int numberOfFullBytes = wordLength / 8;
+ 	int remainingBits = wordLength%8;
+ 	char currentByte = 0;
+ 	char lastByte = 0;
+
+    // Main conversion mechanics
+    int currentRound = 0;
+
+ 	for(int i=0; i < (wordLength-remainingBits); i += stepSize) {
+
+        // currentByte = 0;
+        // for(int j = 0; j < stepSize; j++){
+        //         currentByte = currentByte | (int) (a[i] - '0') << j;
+        // }
+
+        currentByte = 0;
+ 		currentByte = (int) (a[i] - '0') << 7 | (int) (a[i+1] - '0')  << 6 |
+ 				      (int) (a[i+2] - '0')  << 5 | (int) (a[i+3] - '0')  << 4 |
+ 				      (int) (a[i+4] - '0')  << 3 | (int) (a[i+5] - '0')  << 2 |
+ 				      (int) (a[i+6] - '0')  << 1 | (int) (a[i+7] - '0')  << 0;
+
+        // printf("%d\n", currentByte);
+        // 
+        // currentByte = 0;
+        // currentByte = currentByte | ((int) (a[i] - '0') << 7);
+        // currentByte = currentByte | ((int) (a[i] - '0') << 6);
+        // currentByte = currentByte | ((int) (a[i] - '0') << 5);
+        // currentByte = currentByte | ((int) (a[i] - '0') << 4);
+        // currentByte = currentByte | ((int) (a[i] - '0') << 3);
+        // currentByte = currentByte | ((int) (a[i] - '0') << 2);
+        // currentByte = currentByte | ((int) (a[i] - '0') << 1);
+        // currentByte = currentByte | ((int) (a[i] - '0') << 0);
+
+        // printf("%d\n", currentByte);
+
+ 		output[currentRound] = currentByte;
 
 
-//    char nulls ='0'*(8 - strlen(output)%8);
-//    strcat(nums, nulls);
-//    int j;
-//    output[0] = '\0';
-//    int e;
-//    for (j=0; j<strlen(nums); j+=8){
-//    	int num = 0;
-//    	for (e = j; e<j+8;e++){
-//    		num = (num+nums[e])*2;
-//    	}
-//    	output[j/8] =  num/2;
-//    }
+        // Next byte size step
+ 		if (i%stepSize == 0) {
+ 			currentRound += 1;
+ 		}
 
-    return strlen(output)*8;
-}
+        // Reaching last not full byte
+ 		if (currentRound == numberOfFullBytes) {
+ 			for(int b=0; b < remainingBits; b++) {
+ 				lastByte |= (int) (a[(wordLength-remainingBits) + b] - '0') << ( 7 - b);
+ 			}
+ 			output[currentRound] = lastByte;
+ 		}
+ 	}
+ return strlen(a);
+ }
